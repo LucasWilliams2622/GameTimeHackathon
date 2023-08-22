@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Start_Scene.unity
     guid: 15465a6b35c6feb47bfd56b1389eff8e
   - enabled: 1
+    path: Assets/Scenes/Man2Canh1.unity
+    guid: 2ab0fd88fa477de41be6aa4a2e51938b
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 046feac0900f16445bdd9a35d66dfe3d
   - enabled: 1
