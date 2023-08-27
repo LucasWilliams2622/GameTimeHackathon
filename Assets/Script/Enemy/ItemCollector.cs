@@ -10,11 +10,13 @@ public class ItemCollector : MonoBehaviour
     //public UnityEngine.UI.Text My_Text;
     public static int scores;
     public int ScorePlus;
+    public int BigScore;
     public TextMeshProUGUI scoreText;
     [SerializeField] private AudioSource collectItemSound;
     private void Start()
     {
         ScorePlus = 1;
+        BigScore = 20;
         scores = 0;
         scoreText.text = "";
         UpdateScoreText();
@@ -27,6 +29,12 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             collectItemSound.Play();
             onIncrementScore(ScorePlus);
+        }
+        if (collision.gameObject.CompareTag("BigGold"))
+        {
+            Destroy(collision.gameObject);
+            collectItemSound.Play();
+            onIncrementScore(BigScore);
         }
     }
     public void onIncrementScore(int scorePlus)

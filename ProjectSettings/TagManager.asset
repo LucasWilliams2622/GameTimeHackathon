@@ -17,6 +17,7 @@ TagManager:
   - BoxWeapon
   - AmmunitionBox
   - Boss
+  - BigGold
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Ground
   - Stuff
   - Player
-  - 
+  - Other
   - 
   - 
   - 
