@@ -12,6 +12,7 @@ public class ItemCollector : MonoBehaviour
     public int ScorePlus;
     public int BigScore;
     public TextMeshProUGUI scoreText;
+    PlayerHealth playerHealth = new PlayerHealth();
     [SerializeField] private AudioSource collectItemSound;
     private void Start()
     {
@@ -36,6 +37,13 @@ public class ItemCollector : MonoBehaviour
             collectItemSound.Play();
             onIncrementScore(BigScore);
         }
+     /*   if (collision.gameObject.CompareTag("Heal"))
+        {
+            Destroy(collision.gameObject);
+            collectItemSound.Play();
+            playerHealth.Heal(2);
+        }*/
+        
     }
     public void onIncrementScore(int scorePlus)
     {

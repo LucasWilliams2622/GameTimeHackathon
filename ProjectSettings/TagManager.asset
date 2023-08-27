@@ -18,6 +18,7 @@ TagManager:
   - AmmunitionBox
   - Boss
   - BigGold
+  - Heal
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,11 @@ public class PlayerHealth : MonoBehaviour
         {
 
         }
+        if (collision.gameObject.CompareTag("Heal"))
+        {
+            Destroy(collision.gameObject);
+            Heal(2);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,8 +44,10 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);
         }
-    }
+       
 
+    }
+    
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -51,5 +58,13 @@ public class PlayerHealth : MonoBehaviour
             Time.timeScale = 0f;
             panelDead.SetActive(true);
         }
+    }
+
+    public void Heal(int heal)
+    {
+        Debug.Log("=====================>HEAL");
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
+
     }
 }
