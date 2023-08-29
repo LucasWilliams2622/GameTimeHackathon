@@ -82,14 +82,14 @@ public class EnemyFollow : MonoBehaviour
 
         }
 
-        if (player.transform.position.x > 0f)
+        /*if (player.transform.position.x > 0f)
         {
             sprite.flipX = true;
         }
         else if (player.transform.position.x < 0f)
         {
             sprite.flipX = false;
-        }
+        }*/
     }
  
 
