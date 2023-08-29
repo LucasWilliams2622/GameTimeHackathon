@@ -19,6 +19,7 @@ TagManager:
   - Boss
   - BigGold
   - Heal
+  - TankBullet
   layers:
   - Default
   - TransparentFX

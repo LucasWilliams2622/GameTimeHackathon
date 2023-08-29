@@ -15,7 +15,7 @@ public class PlayerShooting : MonoBehaviour
     public Transform ShootPoint;
     public TextMeshProUGUI BulletLeftText;
     public GameObject showShootPoint;
-    //public float fireRate;
+    public float fireRate;
     float ReadyForNextShot;
     [SerializeField] private AudioSource sniperSound;
     [SerializeField] private AudioSource chargingSound;
@@ -40,7 +40,7 @@ public class PlayerShooting : MonoBehaviour
         {
             if (Time.time > ReadyForNextShot)
             {
-                // ReadyForNextShot = Time.time * 1 / fireRate;
+               /* ReadyForNextShot = Time.time * 1 / fireRate;*/
                 shoot();
 
             }
