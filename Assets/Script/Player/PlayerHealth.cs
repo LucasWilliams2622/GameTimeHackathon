@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("TankBullet"))
         {
-            TakeDamage(2);
+            TakeDamage(5);
         }
 
     }
