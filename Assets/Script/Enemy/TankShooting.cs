@@ -27,7 +27,7 @@ public class TankShooting : MonoBehaviour
         if (distance < shootRange)
         {
             timer += Time.deltaTime;
-            if (timer > 7)
+            if (timer > 5)
             {
                 timer = 0;
                 shoot();
