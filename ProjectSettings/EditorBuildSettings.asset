@@ -12,24 +12,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 2 Scene 1.unity
     guid: e57147f924412cb41b706be669c061f2
   - enabled: 1
+    path: Assets/Scenes/Level 2 Scene 2.unity
+    guid: 899f32f9744164f4d8bb19944cea3360
+  - enabled: 1
     path: Assets/Scenes/Level 3 Scene 1.unity
     guid: d91613c982c404a4f86c0f6451aa1b7d
   - enabled: 1
     path: Assets/Scenes/Level 3 Scene 2.unity
     guid: 1a943f2101331424d8653c98b568eaf1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Man2Canh1.unity
     guid: 2ab0fd88fa477de41be6aa4a2e51938b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 046feac0900f16445bdd9a35d66dfe3d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 2.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 3.unity
     guid: aee47494022c5f744953c16aae26baba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Victory_Scene.unity
     guid: 32e6dde9882a43b4197dfdc2c82f6a03
   m_configObjects:
