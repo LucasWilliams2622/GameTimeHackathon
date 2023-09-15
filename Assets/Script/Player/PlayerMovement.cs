@@ -42,16 +42,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        rigidbody2.velocity = new Vector2(dirX * moveSpeed, rigidbody2.velocity.y);
-        dirX = Input.GetAxisRaw("Horizontal");//GetAxisRaw make movemoment more smooth
-
-        if ((Input.GetKey(KeyCode.Space) && isGround()))
+        if (DialogManager.isActive == false)
         {
-            jumpSoundEffet.Play();
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
+            rigidbody2.velocity = new Vector2(dirX * moveSpeed, rigidbody2.velocity.y);
+            dirX = Input.GetAxisRaw("Horizontal");//GetAxisRaw make movemoment more smooth
+
+            if ((Input.GetKey(KeyCode.Space) && isGround()))
+            {
+                jumpSoundEffet.Play();
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
+            }
         }
         UpdateAnimationState();
-
     }
     private void UpdateAnimationState()
     {
