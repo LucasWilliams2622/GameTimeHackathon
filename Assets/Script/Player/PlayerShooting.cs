@@ -10,7 +10,7 @@ public class PlayerShooting : MonoBehaviour
     public Transform Gun;
     Vector2 direction;
     public GameObject Bullet;
-    public int MountOfBullet = 0;
+    public int MountOfBullet = 0;   
     public float BulletSpeed;
     public Transform ShootPoint;
     public TextMeshProUGUI BulletLeftText;
@@ -21,7 +21,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private AudioSource chargingSound;
     [SerializeField] private AudioSource outOfBulletSound;
     private int times = 0;
-
+    private bool isRight;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePos - (Vector2)Gun.position;
         FaceMouce();
+        Flip();
         if (Input.GetMouseButtonDown(0))
         {
             if (Time.time > ReadyForNextShot)
@@ -45,6 +46,18 @@ public class PlayerShooting : MonoBehaviour
 
             }
         }
+    }
+    void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+        Debug.Log("=============>" + transform.rotation.z);
+
+        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 270) theScale.y = -1;
+
+        else theScale.y = 1;
+       /* if (isRight == false) theScale.y = -1;
+        else theScale.y = 1;*/
+        transform.localScale = theScale;
     }
     void showFireShoot()
     {
