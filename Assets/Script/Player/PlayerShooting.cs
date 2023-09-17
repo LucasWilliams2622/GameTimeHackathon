@@ -36,7 +36,6 @@ public class PlayerShooting : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePos - (Vector2)Gun.position;
         FaceMouce();
-        Flip();
         if (Input.GetMouseButtonDown(0))
         {
             if (Time.time > ReadyForNextShot)
