@@ -20,6 +20,7 @@ TagManager:
   - BigGold
   - Heal
   - TankBullet
+  - WarningZone
   layers:
   - Default
   - TransparentFX
