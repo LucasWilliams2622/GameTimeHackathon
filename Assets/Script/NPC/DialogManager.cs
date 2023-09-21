@@ -12,9 +12,10 @@ public class DialogManager : MonoBehaviour
     public Text actorName;
     public Text messageText;
     public RectTransform BackgroundBox;
-
+    public AudioSource audioSource;
     Message[] currentMessages;
     Actor[] currentActors;
+    SFX[] currentsfxs;
     int activeMessage = 0;
 
 
@@ -22,10 +23,11 @@ public class DialogManager : MonoBehaviour
     #endregion
 
 
-    public void OpenDialogue(Message[] messages, Actor[] actors) // open method
+    public void OpenDialogue(Message[] messages, Actor[] actors, SFX[] sfxs) // open method
     {
         currentMessages = messages;
         currentActors = actors;
+        currentsfxs = sfxs;
         activeMessage = 0;
         isActive = true;
         DislayMessage();

@@ -6,9 +6,10 @@ public class DIalogBox : MonoBehaviour
 {
     public Message[] messages;
     public Actor[] actors;
+    public SFX[] sfxs;
     public void StartDialogue()
     {
-        FindObjectOfType<DialogManager>().OpenDialogue(messages, actors);
+        FindObjectOfType<DialogManager>().OpenDialogue(messages, actors, sfxs);
     }
 }
 
@@ -23,4 +24,10 @@ public class DIalogBox : MonoBehaviour
     {
         public string name;
         public Sprite sprite;
+    }
+
+    [System.Serializable]
+    public class SFX
+    {
+        public AudioSource audioSource;
     }
