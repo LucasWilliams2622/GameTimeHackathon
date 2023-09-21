@@ -3,18 +3,40 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public static float masterVolume = 1.0f; // Biến lưu trữ âm lượng chung
+    public Slider volumeSlider; // Thanh trượt điều chỉnh âm lượng
+    public AudioSource backgroundMusic; // AudioSource chứa nhạc nền
+    public Toggle toggle;
 
-    // Phương thức để thiết lập âm lượng chung
-    public static void SetMasterVolume(float volume)
+    private void Start()
     {
-        masterVolume = volume;
 
-        // Điều chỉnh âm lượng của tất cả AudioSource trong scene
-        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource audioSource in audioSources)
+        // Thiết lập giá trị ban đầu của thanh trượt âm lượng
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1.0f);
+
+        // Gán sự kiện cho thanh trượt âm lượng
+        volumeSlider.onValueChanged.AddListener(ChangeVolume);
+
+    }
+
+    private void Update()
+    {
+        if (toggle.isOn == true)
         {
-            audioSource.volume = volume;
+            backgroundMusic.mute = false;
+        } else
+        {
+            backgroundMusic.mute = true;
         }
     }
+
+    // Phương thức thay đổi âm lượng
+    private void ChangeVolume(float volume)
+    {
+        // Lưu giá trị âm lượng vào PlayerPrefs để giữ giá trị này sau khi thoát game
+        PlayerPrefs.SetFloat("Volume", volume);
+
+        // Cập nhật âm lượng của AudioSource nhạc nền
+        backgroundMusic.volume = volume;
+    }
+
 }
