@@ -24,4 +24,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Victory_Scene.unity
     guid: 32e6dde9882a43b4197dfdc2c82f6a03
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: d4e9350708a6eb24c85d2c43cb49f723, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 6674b95d0f8c708438d0773fdbae73e4, type: 2}
