@@ -81,7 +81,7 @@ public class ItemCollector : MonoBehaviour
     {
         Debug.Log(numHackathon);
         int point = numHackathon + (int)currentPoint;
-        hackathonText.text = "" + point;
+            hackathonText.text = "" + point;
 
     }
     public void UpdateScoreText()
