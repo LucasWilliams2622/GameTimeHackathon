@@ -4714,7 +4714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press E to continue...
+  m_Text: "Nh\u1EA5n E \u0111\u1EC3 ti\u1EBFp t\u1EE5c..."
 --- !u!1 &5644573695989314781
 GameObject:
   m_ObjectHideFlags: 0
