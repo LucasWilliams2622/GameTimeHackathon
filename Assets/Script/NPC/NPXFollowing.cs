@@ -13,6 +13,7 @@ public class NPXFollowing : MonoBehaviour
     public Transform ground;
     public static bool jumping;
     public Animator anim;
+    float posX;
 
     void Start()
     {
@@ -42,5 +43,17 @@ public class NPXFollowing : MonoBehaviour
         //direction.Normalize();
 
         //transform.position += direction * moveSpeed * Time.deltaTime;
+        FlipToPlayer();
     }
+
+       public void FlipToPlayer()
+    {
+        Vector3 theScale = transform.localScale;
+        posX = playerTransform.position.x - transform.position.x;
+        if (posX > 0) theScale.x = -1;
+        else theScale.x = 1;
+
+        transform.localScale = theScale;
+    }
+
 }
