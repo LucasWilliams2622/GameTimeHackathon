@@ -22,6 +22,7 @@ TagManager:
   - TankBullet
   - WarningZone
   - Letter
+  - Hackathon
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,10 @@ public class ItemCollector : MonoBehaviour
     public int ScorePlus;
     public int BigScore;
     public TextMeshProUGUI scoreText;
+
+    public static int numHackathon;
+    public TextMeshProUGUI hackathonText;
+
     PlayerHealth playerHealth = new PlayerHealth();
     [SerializeField] private AudioSource collectItemSound;
     private void Start()
@@ -19,6 +23,8 @@ public class ItemCollector : MonoBehaviour
         ScorePlus = 1;
         BigScore = 20;
         scores = 0;
+        numHackathon = 0;
+        hackathonText.text = "";
         scoreText.text = "";
         UpdateScoreText();
     }
@@ -37,13 +43,30 @@ public class ItemCollector : MonoBehaviour
             collectItemSound.Play();
             onIncrementScore(BigScore);
         }
-     /*   if (collision.gameObject.CompareTag("Heal"))
+
+        if (collision.gameObject.CompareTag("Hackathon"))
         {
             Destroy(collision.gameObject);
             collectItemSound.Play();
-            playerHealth.Heal(2);
-        }*/
-        
+            onCollectHackathon(ScorePlus);
+        }
+        /*   if (collision.gameObject.CompareTag("Heal"))
+           {
+               Destroy(collision.gameObject);
+               collectItemSound.Play();
+               playerHealth.Heal(2);
+           }*/
+
+    }
+
+    public void onCollectHackathon(int scorePlus)
+    {
+        numHackathon = numHackathon + scorePlus;
+        PlayerPrefs.SetInt("numHackathon", numHackathon);
+        PlayerPrefs.Save();
+        Debug.Log(numHackathon);
+
+        UpdateHackathonText();
     }
     public void onIncrementScore(int scorePlus)
     {
@@ -54,12 +77,16 @@ public class ItemCollector : MonoBehaviour
 
         UpdateScoreText();
     }
+    public void UpdateHackathonText()
+    {
+        Debug.Log(numHackathon);
+        hackathonText.text = "" + numHackathon;
+
+    }
     public void UpdateScoreText()
     {
         Debug.Log(scores);
         scoreText.text = "" + scores;
         
-       
-
     }
 }

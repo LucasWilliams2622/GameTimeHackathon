@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class NPCFollowing2 : MonoBehaviour
 {
+
+
     private GameObject player;
     public float speed;
     private float distance;
