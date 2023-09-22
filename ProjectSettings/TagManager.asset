@@ -21,7 +21,7 @@ TagManager:
   - Heal
   - TankBullet
   - WarningZone
-  - Hackathon
+  - Letter
   layers:
   - Default
   - TransparentFX

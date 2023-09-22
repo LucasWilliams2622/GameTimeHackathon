@@ -6,11 +6,12 @@ public class PickUpWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject Gun;
     [SerializeField] private GameObject BoxWeapon;
+    [SerializeField] private PlayerShooting shootingScript;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        shootingScript = GetComponent<PlayerShooting>();
     }
 
     // Update is called once per frame
@@ -31,9 +32,22 @@ public class PickUpWeapon : MonoBehaviour
             shootingScript.BulletLeftText.text = " " + shootingScript.MountOfBullet;
 
         }
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Letter")
+        {
+            shootingScript.enabled = false;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Letter")
+        {
+            shootingScript.enabled = true;
+        }
     }
 }
