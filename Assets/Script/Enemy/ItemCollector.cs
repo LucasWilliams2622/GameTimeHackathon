@@ -12,7 +12,7 @@ public class ItemCollector : MonoBehaviour
     public int ScorePlus;
     public int BigScore;
     public TextMeshProUGUI scoreText;
-
+    public int currentPoint;
     public static int numHackathon;
     public TextMeshProUGUI hackathonText;
 
@@ -80,7 +80,8 @@ public class ItemCollector : MonoBehaviour
     public void UpdateHackathonText()
     {
         Debug.Log(numHackathon);
-        hackathonText.text = "" + numHackathon;
+        int point = numHackathon + (int)currentPoint;
+        hackathonText.text = "" + point;
 
     }
     public void UpdateScoreText()
