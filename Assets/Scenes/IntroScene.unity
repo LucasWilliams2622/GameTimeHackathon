@@ -281,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044469945}
   - component: {fileID: 1044469946}
+  - component: {fileID: 1044469947}
   m_Layer: 0
   m_Name: Intro Loop
   m_TagString: Untagged
@@ -338,6 +339,26 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!95 &1044469947
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044469944}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1152493120
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +582,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812689372}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a89d612b63c63ac4ea268aa0503c6843, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 0d940b08b4b78a24bbbb349cb120dab5, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1770956392}
@@ -635,18 +656,12 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 6398350298576454911, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
-    value: {fileID: 201481994}
-  - key: {fileID: -1455860125150761515, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
-    value: {fileID: 1152493120}
-  - key: {fileID: 5713000583632848882, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
+  - key: {fileID: 3074799293115049387, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
     value: {fileID: 1812689372}
-  - key: {fileID: -8247326468868442913, guid: 7aaa8190bfebb7c42b24c39a495af6b2, type: 2}
-    value: {fileID: 1044469944}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2084475065
