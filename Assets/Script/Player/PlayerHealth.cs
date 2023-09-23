@@ -26,12 +26,16 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Trap")
         {
-
+            TakeDamage(1);
         }
         if (collision.gameObject.CompareTag("Heal"))
         {
             Destroy(collision.gameObject);
             Heal(2);
+        }
+        if (collision.gameObject.CompareTag("TankBullet"))
+        {
+            TakeDamage(5);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
