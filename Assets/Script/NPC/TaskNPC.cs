@@ -6,14 +6,21 @@ public class TaskNPC : MonoBehaviour
     public DIalogBox trigger;
     public GameObject dialogueBox;
     private bool hasTriggered = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") == true && !hasTriggered)
+        if (collision.gameObject.CompareTag("Player") && !hasTriggered)
         {
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+
             hasTriggered = true;
             dialogueBox.SetActive(true);
+            Debug.Log("AAAAAAAAAA");
             trigger.StartDialogue();
 
+            Debug.Log(" playerMovement.currentMovementState" + playerMovement.currentMovementState);
+            playerMovement.SetPlayerMovementState(PlayerMovement.MovementState.idle);
         }
     }
+
 }

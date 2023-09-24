@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;//if some variable use many times u should use it like a global variable 
     [SerializeField] private float jumpForce = 10f;//SerializeField for set value on Editor 
     // use enum to assign the names or string values to integral constants, that make a program easy to read and maintain.
-    private enum MovementState { idle, running, jumping, falling }//0 idle | 1 running | 2 jumping | 3 falling
+    public enum MovementState { idle, running, jumping, falling }//0 idle | 1 running | 2 jumping | 3 falling
+    public MovementState currentMovementState = MovementState.idle;
     [SerializeField] private AudioSource playerDeath;
     [SerializeField] private AudioSource jumpSoundEffet;
     private Vector2 lastCheckpointPos;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (DialogManager.isActive == false)
         {
+           
             rigidbody2.velocity = new Vector2(dirX * moveSpeed, rigidbody2.velocity.y);
             dirX = Input.GetAxisRaw("Horizontal");//GetAxisRaw make movemoment more smooth
 
@@ -53,23 +55,23 @@ public class PlayerMovement : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
             }
         }
+      
         UpdateAnimationState();
     }
     private void UpdateAnimationState()
     {
-        MovementState state;
-
+        MovementState state = currentMovementState;
+        Debug.Log("currentMovementState"+ currentMovementState);
         if (dirX > 0f)
         {
             //anim.SetBool("running", true);
-            state = MovementState.running;
-
+            SetPlayerMovementState(MovementState.running);
             sprite.flipX = false;
         }
         else if (dirX < 0f)
         {
             //anim.SetBool("running", true);
-            state = MovementState.running;
+            SetPlayerMovementState(MovementState.running);
             sprite.flipX = true;
         }
         else
@@ -80,16 +82,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (rigidbody2.velocity.y > .1f)
         {
-            state = MovementState.jumping;
+            SetPlayerMovementState(MovementState.jumping);
         }
         if (rigidbody2.velocity.y < -.1f)
         {
-            state = MovementState.falling;
+            SetPlayerMovementState(MovementState.falling);
         }
         anim.SetInteger("state", (int)state);
 
     }
-
+    public void SetPlayerMovementState(MovementState state)
+    {
+        currentMovementState = state;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "AmmunitionBox")
