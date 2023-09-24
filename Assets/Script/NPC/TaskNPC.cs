@@ -15,7 +15,6 @@ public class TaskNPC : MonoBehaviour
 
             hasTriggered = true;
             dialogueBox.SetActive(true);
-            Debug.Log("AAAAAAAAAA");
             trigger.StartDialogue();
 
             Debug.Log(" playerMovement.currentMovementState" + playerMovement.currentMovementState);
