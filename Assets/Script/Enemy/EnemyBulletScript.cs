@@ -33,5 +33,9 @@ public class EnemyBulletScript : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (collision.gameObject.CompareTag("Stuff"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
