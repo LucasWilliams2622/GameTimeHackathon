@@ -27,13 +27,24 @@ public class EnemyBulletScript : MonoBehaviour
        
     }
 
-     void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
         }
         if (collision.gameObject.CompareTag("Stuff"))
+        {
+            Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Ground"))
         {
             Destroy(this.gameObject);
         }
