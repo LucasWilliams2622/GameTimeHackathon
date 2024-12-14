@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: E to continue...
+  m_Text: "Nh\u1EA5n E \u0111\u1EC3 ti\u1EBFp t\u1EE5c"
 --- !u!222 &201481997
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -446.98883, y: 237.4206}
+  m_AnchoredPosition: {x: -446.99002, y: 237.4206}
   m_SizeDelta: {x: 170.0223, y: 37.1588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152493122
@@ -409,7 +409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Esc to skip
+  m_Text: "Nh\u1EA5n esc \u0111\u1EC3 b\u1ECF qua"
 --- !u!222 &1152493123
 CanvasRenderer:
   m_ObjectHideFlags: 0
