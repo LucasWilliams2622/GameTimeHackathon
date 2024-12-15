@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
             PlayerShooting shootingScript = GetComponent<PlayerShooting>();
             shootingScript.MountOfBullet = shootingScript.MountOfBullet + 10;
-            shootingScript.BulletLeftText.text = " " + shootingScript.MountOfBullet;
+            shootingScript.BulletLeftText.text = "" + shootingScript.MountOfBullet;
 
         }
        
