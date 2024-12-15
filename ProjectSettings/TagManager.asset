@@ -23,6 +23,7 @@ TagManager:
   - WarningZone
   - Letter
   - Hackathon
+  - EnemyDie
   layers:
   - Default
   - TransparentFX

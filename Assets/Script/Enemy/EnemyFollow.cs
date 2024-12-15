@@ -11,7 +11,6 @@ public class EnemyFollow : MonoBehaviour
     private float distance;
     public float thrownSpace;
     private SpriteRenderer sprite;
-
     public float followRange;
     private Animator anim;
     private int stack;
@@ -33,6 +32,11 @@ public class EnemyFollow : MonoBehaviour
         if (collision.gameObject.tag == "TrampolineTop")
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, thrownSpace);
+        }
+        if (collision.gameObject.tag == "EnemyDie")
+        {
+            Debug.Log("Enemy chạm vào EnemyDie và biến mất");
+            Destroy(gameObject); // Xóa Enemy
         }
     }
 
@@ -70,12 +74,7 @@ public class EnemyFollow : MonoBehaviour
                 return;
             }
         }
-
-        // Thêm điều kiện xử lý Enemy biến mất khi đụng vào Player
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(gameObject); // Xóa Enemy khỏi game
-        }
+       
     }
 
     void Update()
