@@ -13,6 +13,8 @@ public class TankShooting : MonoBehaviour
     public float shootRange;
     [SerializeField] private AudioSource shootSound;
 
+    private bool canShoot = true;
+
     void Start()
     {
         showShootPoint.SetActive(false);
@@ -21,34 +23,37 @@ public class TankShooting : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        /* Debug.Log("+>"+ distance);*/
-        if (distance < shootRange)
+
+        if (distance < shootRange && canShoot)
         {
-            timer += Time.deltaTime;
-            if (timer > 5)
-            {
-                timer = 0;
-                shoot();
-            }
-
+            shoot();
         }
-
     }
+
     void showFireShoot()
     {
         showShootPoint.SetActive(true);
         Invoke("hideFireShoot", 0.1f);
     }
+
     void hideFireShoot()
     {
         showShootPoint.SetActive(false);
     }
+
     void shoot()
     {
         shootSound.Play();
         showFireShoot();
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        StartCoroutine(ShootingCooldown());
+    }
+
+    private IEnumerator ShootingCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(5);
+        canShoot = true; 
     }
 }
