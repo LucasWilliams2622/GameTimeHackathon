@@ -6,21 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-    public GameObject pressEText;
     public GameObject pressEscText;
+    [SerializeField] GameObject startGameButton;
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SceneManager.LoadScene("Start_Scene");
-        }
-
-       
-        if (Input.GetKeyDown(KeyCode.Escape))
+    {       
+        if (Input.GetKeyDown(KeyCode.Escape) && pressEscText.activeSelf)
         {
             SceneManager.LoadScene("Start_Scene");
         }     
+
+        if (Input.anyKeyDown && startGameButton.activeSelf)
+        {
+            StartCoroutine(LoadSceneWithDelay(0.5f));
+        }     
+
+
+    }
+
+    IEnumerator LoadSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("Start_Scene");
     }
 
 }
