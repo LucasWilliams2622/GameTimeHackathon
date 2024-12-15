@@ -11,7 +11,7 @@ public class TaskNPC : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !hasTriggered)
         {
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            var playerMovement = collision.GetComponent<PlayerMovement>();
 
             hasTriggered = true;
             dialogueBox.SetActive(true);
