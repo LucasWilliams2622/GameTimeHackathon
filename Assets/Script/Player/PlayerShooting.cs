@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -16,52 +15,36 @@ public class PlayerShooting : MonoBehaviour
     public GameObject showShootPoint;
     public float fireRate;
     float ReadyForNextShot;
+
     [SerializeField] private AudioSource sniperSound;
     [SerializeField] private AudioSource chargingSound;
     [SerializeField] private AudioSource outOfBulletSound;
-    private int times = 0;
-    private bool isRight;
-    private bool canShoot = true; // Thêm biến kiểm soát trạng thái bắn
 
-    // Start is called before the first frame update
+    private int times = 0;
+    private bool canShoot = true;
+    private bool isSceneRestricted = false;
+
     void Start()
     {
         showShootPoint.SetActive(false);
+
+        // Kiểm tra scene hiện tại
+        if (SceneManager.GetActiveScene().name == "Level 3 Scene 2")
+        {
+            isSceneRestricted = true;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePos - (Vector2)Gun.position;
-        FaceMouce();
+        FaceMouse();
 
         if (Input.GetMouseButtonDown(0) && canShoot) // Kiểm tra trạng thái bắn
         {
             shoot();
         }
-    }
-
-    void Flip()
-    {
-        Vector3 theScale = transform.localScale;
-        Debug.Log("=============>" + transform.rotation.z);
-
-        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 270) theScale.y = -1;
-        else theScale.y = 1;
-
-        transform.localScale = theScale;
-    }
-
-    void showFireShoot()
-    {
-        showShootPoint.SetActive(true);
-        Invoke("hideFireShoot", 0.1f);
-    }
-
-    void hideFireShoot()
-    {
-        showShootPoint.SetActive(false);
     }
 
     void shoot()
@@ -87,22 +70,35 @@ public class PlayerShooting : MonoBehaviour
             }
 
             GameObject BulletInstant = Instantiate(Bullet, ShootPoint.position, ShootPoint.rotation);
-
             BulletInstant.GetComponent<Rigidbody2D>().AddForce(BulletInstant.transform.right * BulletSpeed);
             Destroy(BulletInstant, 2);
 
-            StartCoroutine(ShootingCooldown()); // Gọi Coroutine để chờ 5 giây trước khi bắn tiếp
+            if (isSceneRestricted)
+            {
+                StartCoroutine(ShootingCooldown());
+            }
         }
     }
 
     private IEnumerator ShootingCooldown()
     {
-        canShoot = false; // Không cho phép bắn
-        yield return new WaitForSeconds(5); // Đợi 5 giây
-        canShoot = true; // Cho phép bắn lại
+        canShoot = false;
+        yield return new WaitForSeconds(5);
+        canShoot = true; 
     }
 
-    private void FaceMouce()
+    void showFireShoot()
+    {
+        showShootPoint.SetActive(true);
+        Invoke("hideFireShoot", 0.1f);
+    }
+
+    void hideFireShoot()
+    {
+        showShootPoint.SetActive(false);
+    }
+
+    private void FaceMouse()
     {
         Gun.transform.right = direction;
     }
