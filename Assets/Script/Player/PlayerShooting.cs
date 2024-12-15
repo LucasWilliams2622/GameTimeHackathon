@@ -72,7 +72,7 @@ public class PlayerShooting : MonoBehaviour
         if (MountOfBullet == 0)
         {
             outOfBulletSound.Play();
-            BulletLeftText.text = " " + MountOfBullet;
+            BulletLeftText.text = "" + MountOfBullet;
         }
         else
         {
@@ -83,7 +83,7 @@ public class PlayerShooting : MonoBehaviour
             MountOfBullet--;
             /* Debug.Log("Times shoot :" + times);
              Debug.Log("MountOfBullet" + MountOfBullet);*/
-            BulletLeftText.text = " " + MountOfBullet;
+            BulletLeftText.text = "" + MountOfBullet;
 
             if (times % 5 == 0)
             {

@@ -29,7 +29,7 @@ public class PickUpWeapon : MonoBehaviour
             PlayerShooting shootingScript = GetComponent<PlayerShooting>();
             shootingScript.enabled = true;
             shootingScript.MountOfBullet = shootingScript.MountOfBullet + 20;
-            shootingScript.BulletLeftText.text = " " + shootingScript.MountOfBullet;
+            shootingScript.BulletLeftText.text = "" + shootingScript.MountOfBullet;
 
         }
 
