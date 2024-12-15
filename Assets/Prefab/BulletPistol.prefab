@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8127129760278649309}
   - component: {fileID: 3930433866297838273}
   - component: {fileID: 1923014467918446442}
+  - component: {fileID: 6319304909002981416}
   m_Layer: 0
   m_Name: BulletPistol
   m_TagString: Hurt
@@ -233,3 +234,15 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &6319304909002981416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419606200890656122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e5733a15f954d30ba2ecc125dc195c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

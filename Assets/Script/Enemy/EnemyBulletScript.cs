@@ -29,7 +29,14 @@ public class EnemyBulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Stuff"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Stuff") || collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Stuff"))
         {
             Destroy(this.gameObject);
         }
