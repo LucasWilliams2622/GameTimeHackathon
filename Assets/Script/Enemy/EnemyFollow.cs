@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -27,6 +27,7 @@ public class EnemyFollow : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "TrampolineTop")
@@ -44,7 +45,7 @@ public class EnemyFollow : MonoBehaviour
             //anim.SetTrigger("EnemyHurt");
             if (stack == diePoint)
             {
-             
+
                 if (gameObject.tag == "Boss")
                 {
                     var player = GameObject.FindGameObjectsWithTag("Player");
@@ -52,7 +53,7 @@ public class EnemyFollow : MonoBehaviour
                     itemCollector.onIncrementScore(10);
                     itemCollector.UpdateScoreText();
                     Destroy(gameObject);
-                    
+
                 }
                 else
                 {
@@ -61,13 +62,19 @@ public class EnemyFollow : MonoBehaviour
                     itemCollector.onIncrementScore(10);
                     itemCollector.UpdateScoreText();
                     Destroy(gameObject);
-                    
+
                 }
             }
             else
             {
                 return;
             }
+        }
+
+        // Thêm điều kiện xử lý Enemy biến mất khi đụng vào Player
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject); // Xóa Enemy khỏi game
         }
     }
 
@@ -91,6 +98,4 @@ public class EnemyFollow : MonoBehaviour
             sprite.flipX = false;
         }*/
     }
- 
-
 }
