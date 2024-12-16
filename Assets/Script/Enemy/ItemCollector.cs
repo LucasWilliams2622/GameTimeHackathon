@@ -73,8 +73,6 @@ public class ItemCollector : MonoBehaviour
         scores = scores + scorePlus;
         PlayerPrefs.SetInt("score", scores);
         PlayerPrefs.Save();
-        Debug.Log(scores);
-
         UpdateScoreText();
     }
     public void UpdateHackathonText()

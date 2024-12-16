@@ -5,147 +5,151 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2;
+    private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sprite;
-    private BoxCollider2D coll;
-    public bool isRight = true;
-
+    private Collider2D coll;
     public float thrownSpace;
-    [SerializeField] private LayerMask jumableGround;
-    private float dirX;// = 0f just in case
-    [SerializeField] private float moveSpeed = 7f;//if some variable use many times u should use it like a global variable 
-    [SerializeField] private float jumpForce = 10f;//SerializeField for set value on Editor 
-    // use enum to assign the names or string values to integral constants, that make a program easy to read and maintain.
-    public enum MovementState { idle, running, jumping, falling }//0 idle | 1 running | 2 jumping | 3 falling
-    public MovementState currentMovementState = MovementState.idle;
-    [SerializeField] private AudioSource playerDeath;
-    [SerializeField] private AudioSource jumpSoundEffet;
-    private Vector2 lastCheckpointPos;
-    public static Vector3 lastPlayerPos;
+    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private PlayerShooting playerShooting;
 
-    public GameObject frogDead,playerDead;
+    public enum MovementState { idle, running, jumping, falling }
+    public MovementState currentMovementState = MovementState.idle;
+
+    public GameObject frogDead, playerDead;
     public GameObject panelDead;
+
+    private float dirX;
+    private bool canMove = true; // Flag to allow or block player movement
 
     void Start()
     {
-        
-        rigidbody2 = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();//get all component of Animator
+        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        /*    if (CheckpointManagerScript.instance.GetLastCheckpoint() != Vector2.zero)
-            {
-                lastCheckpointPos = CheckpointManagerScript.instance.GetLastCheckpoint();
-                transform.position = lastCheckpointPos;
-            }*/
+        playerShooting = GetComponent<PlayerShooting>();
     }
 
     void Update()
     {
-        if (DialogManager.isActive == false)
+        if (!canMove) // Block movement if `canMove` is false
         {
-           
-            rigidbody2.velocity = new Vector2(dirX * moveSpeed, rigidbody2.velocity.y);
-            dirX = Input.GetAxisRaw("Horizontal");//GetAxisRaw make movemoment more smooth
-
-            if ((Input.GetKey(KeyCode.Space) && isGround()))
-            {
-                jumpSoundEffet.Play();
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpForce);
-            }
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
         }
-      
+
+        HandleMovement();
         UpdateAnimationState();
     }
+
+    private void HandleMovement()
+    {
+        dirX = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+
+        if (Input.GetKey(KeyCode.Space) && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+    }
+
     private void UpdateAnimationState()
     {
         MovementState state = currentMovementState;
-        Debug.Log("currentMovementState"+ currentMovementState);
+
         if (dirX > 0f)
         {
-            //anim.SetBool("running", true);
             SetPlayerMovementState(MovementState.running);
             sprite.flipX = false;
         }
         else if (dirX < 0f)
         {
-            //anim.SetBool("running", true);
             SetPlayerMovementState(MovementState.running);
             sprite.flipX = true;
         }
         else
         {
             state = MovementState.idle;
-            // anim.SetBool("running", false);
         }
 
-        if (rigidbody2.velocity.y > .1f)
+        if (rb.velocity.y > .1f)
         {
             SetPlayerMovementState(MovementState.jumping);
         }
-        if (rigidbody2.velocity.y < -.1f)
+        else if (rb.velocity.y < -.1f)
         {
             SetPlayerMovementState(MovementState.falling);
         }
-        anim.SetInteger("state", (int)state);
 
+        anim.SetInteger("state", (int)state);
     }
+
     public void SetPlayerMovementState(MovementState state)
     {
         currentMovementState = state;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "AmmunitionBox")
+        if (collision.gameObject.CompareTag("AmmunitionBox"))
         {
             Destroy(collision.gameObject);
             PlayerShooting shootingScript = GetComponent<PlayerShooting>();
-            shootingScript.MountOfBullet = shootingScript.MountOfBullet + 10;
-            shootingScript.BulletLeftText.text = "" + shootingScript.MountOfBullet;
-
+            if (shootingScript != null)
+            {
+                shootingScript.MountOfBullet += 10;
+                shootingScript.BulletLeftText.text = shootingScript.MountOfBullet.ToString();
+            }
         }
-       
-        if (collision.gameObject.CompareTag("TouchLeft"))
-        {
-            Destroy(gameObject);
-            Instantiate(playerDead,
-            collision.gameObject.transform.position,
-            collision.gameObject.transform.localRotation);
-            panelDead.SetActive(true);
-        }
-
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        /*  if (collision.gameObject.tag == "TouchTop")
-          {
-              var name = collision.attachedRigidbody.name;
-              Destroy(GameObject.Find(name));
-          }*/
-
         if (collision.gameObject.CompareTag("TouchTop"))
         {
-            //frogDead.Play();
-            var name = collision.attachedRigidbody.name;
-            Destroy(GameObject.Find(name));
-            Instantiate(frogDead,
-             collision.gameObject.transform.position,
-             collision.gameObject.transform.localRotation);
+            Destroy(collision.attachedRigidbody.gameObject);
+            Instantiate(frogDead, collision.transform.position, collision.transform.rotation);
         }
     }
 
-    public void ReloadScreeen()
+    public void ReloadScreen()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
 
-    private bool isGround()
+    private bool IsGrounded()
     {
-        // u have to get the collider of player to know touch the ground
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumableGround);
-        // this line create a box around player if this box touch the layout name "Ground" player can jump again
+        if (coll == null) return false;
+
+        RaycastHit2D hit = Physics2D.BoxCast(
+            coll.bounds.center,
+            coll.bounds.size,
+            0f,
+            Vector2.down,
+            0.1f,
+            jumpableGround
+        );
+
+        return hit.collider != null;
+    }
+
+    // Disable player movement (called from TaskNPC or DialogManager)
+    public void DisableMovement()
+    {
+        canMove = false;
+        playerShooting.enabled = false;
+        SetPlayerMovementState(MovementState.idle);
+    }
+
+    // Enable player movement (e.g., when exiting a dialog)
+    public void EnableMovement()
+    {
+        canMove = true;
+        playerShooting.enabled = true;
     }
 }

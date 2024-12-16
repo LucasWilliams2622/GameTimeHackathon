@@ -13,6 +13,8 @@ public class DialogManager : MonoBehaviour
     Message[] currentMessages;
     Actor[] currentActors;
     SFX[] currentsfxs;
+
+    [SerializeField] GameObject player;
     int activeMessage = 0;
 
 
@@ -51,11 +53,16 @@ public class DialogManager : MonoBehaviour
         else
         {
             Debug.Log("Finish!");
+            player.GetComponent<PlayerMovement>().EnableMovement();
             isActive = false;
             gameObject.SetActive(false);
         }
     }
 
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && isActive == true)

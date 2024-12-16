@@ -134,7 +134,11 @@ MonoBehaviour:
   bullet: {fileID: 421097222672682141, guid: a42f4ba52c681204cb58ef9adace72e7, type: 3}
   bulletPos: {fileID: 5835152563719640138}
   showShootPoint: {fileID: 7989808601326411683}
-  shootRange: 10
+  shootRange: 15
+  shootCooldown: 1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
   shootSound: {fileID: 2685899606404541757}
 --- !u!82 &2685899606404541757
 AudioSource:

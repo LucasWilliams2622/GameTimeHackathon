@@ -42,7 +42,6 @@ public class PlayerShooting : MonoBehaviour
             {
                /* ReadyForNextShot = Time.time * 1 / fireRate;*/
                 shoot();
-
             }
         }
     }

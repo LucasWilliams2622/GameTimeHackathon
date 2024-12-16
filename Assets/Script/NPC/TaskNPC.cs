@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class TaskNPC : MonoBehaviour
 {
     public DIalogBox trigger;
@@ -12,14 +13,17 @@ public class TaskNPC : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !hasTriggered)
         {
             var playerMovement = collision.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.DisableMovement(); // Disable player movement
+            }
 
             hasTriggered = true;
             dialogueBox.SetActive(true);
             trigger.StartDialogue();
-
-            Debug.Log(" playerMovement.currentMovementState" + playerMovement.currentMovementState);
-            playerMovement.SetPlayerMovementState(PlayerMovement.MovementState.idle);
         }
     }
+
+    
 
 }

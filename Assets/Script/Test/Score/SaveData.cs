@@ -17,12 +17,12 @@ public class SaveData : MonoBehaviour
         myScore.text = $"SCORE: {PlayerPrefs.GetInt("highscore")}";
 
     }
-    public void SendScore()
-    {
-        if (currentScore > PlayerPrefs.GetInt("highscore"))
-        {
-            PlayerPrefs.SetInt("highscore", currentScore); HighScores.UploadScore(myName.text, currentScore);
-        }
+    // public void SendScore()
+    // {
+    //     if (currentScore > PlayerPrefs.GetInt("highscore"))
+    //     {
+    //         PlayerPrefs.SetInt("highscore", currentScore); HighScores.UploadScore(myName.text, currentScore);
+    //     }
 
-    }
+    // }
 }

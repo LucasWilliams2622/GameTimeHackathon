@@ -7,7 +7,7 @@ public class CheckpointManagerScript : MonoBehaviour
     public static CheckpointManagerScript instance;
     // private Dictionary<int, Vector2> checkpoints = new Dictionary<int, Vector2>();
     public Vector2 lastCheckpointTransform = Vector2.zero;
-    private int lastCheckpoint = 1 ;
+    //private int lastCheckpoint = 1 ;
 
     void Awake()
     {

@@ -16,41 +16,41 @@ public class HighScores : MonoBehaviour
         myDisplay = GetComponent<DisplayHighscores>();
     }
     
-    public static void UploadScore(string username, int score)  //CALLED when Uploading new Score to WEBSITE
-    {//STATIC to call from other scripts easily
-        instance.StartCoroutine(instance.DatabaseUpload(username,score)); //Calls Instance
-    }
+    // public static void UploadScore(string username, int score)  //CALLED when Uploading new Score to WEBSITE
+    // {//STATIC to call from other scripts easily
+    //     instance.StartCoroutine(instance.DatabaseUpload(username,score)); //Calls Instance
+    // }
 
-    IEnumerator DatabaseUpload(string userame, int score) //Called when sending new score to Website
-    {
-        WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(userame) + "/" + score);
-        yield return www;
+    // IEnumerator DatabaseUpload(string userame, int score) //Called when sending new score to Website
+    // {
+    //     WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(userame) + "/" + score);
+    //     yield return www;
 
-        if (string.IsNullOrEmpty(www.error))
-        {
-            print("Upload Successful");
-            DownloadScores();
-        }
-        else print("Error uploading" + www.error);
-    }
+    //     if (string.IsNullOrEmpty(www.error))
+    //     {
+    //         print("Upload Successful");
+    //         DownloadScores();
+    //     }
+    //     else print("Error uploading" + www.error);
+    // }
 
     public void DownloadScores()
     {
-        StartCoroutine("DatabaseDownload");
+       // StartCoroutine("DatabaseDownload");
     }
-    IEnumerator DatabaseDownload()
-    {
-        //WWW www = new WWW(webURL + publicCode + "/pipe/"); //Gets the whole list
-        WWW www = new WWW(webURL + publicCode + "/pipe/0/10"); //Gets top 10
-        yield return www;
+    // IEnumerator DatabaseDownload()
+    // {
+    //     //WWW www = new WWW(webURL + publicCode + "/pipe/"); //Gets the whole list
+    //     WWW www = new WWW(webURL + publicCode + "/pipe/0/10"); //Gets top 10
+    //     yield return www;
 
-        if (string.IsNullOrEmpty(www.error))
-        {
-            OrganizeInfo(www.text);
-            myDisplay.SetScoresToMenu(scoreList);
-        }
-        else print("Error uploading" + www.error);
-    }
+    //     if (string.IsNullOrEmpty(www.error))
+    //     {
+    //         OrganizeInfo(www.text);
+    //         myDisplay.SetScoresToMenu(scoreList);
+    //     }
+    //     else print("Error uploading" + www.error);
+    // }
 
     void OrganizeInfo(string rawData) //Divides Scoreboard info by new lines
     {

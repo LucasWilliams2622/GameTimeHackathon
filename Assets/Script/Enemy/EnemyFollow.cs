@@ -1,100 +1,87 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 public class EnemyFollow : MonoBehaviour
 {
     private GameObject player;
-    public float speed;
-    private float distance;
     public float thrownSpace;
     private SpriteRenderer sprite;
     public float followRange;
     private Animator anim;
     private int stack;
     public int diePoint;
-    private ScoreManager scoreManager;
     [SerializeField] private AudioSource hitSound;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        scoreManager = FindObjectOfType<ScoreManager>();
         player = GameObject.FindGameObjectWithTag("Player");
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "TrampolineTop")
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, thrownSpace);
-        }
-        if (collision.gameObject.tag == "EnemyDie")
-        {
-            Debug.Log("Enemy chạm vào EnemyDie và biến mất");
-            Destroy(gameObject); // Xóa Enemy
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Hurt")
-        {
-            hitSound.Play();
-            stack++;
-            //anim.SetTrigger("EnemyHurt");
-            if (stack == diePoint)
-            {
-
-                if (gameObject.tag == "Boss")
-                {
-                    var player = GameObject.FindGameObjectsWithTag("Player");
-                    ItemCollector itemCollector = player[0].gameObject.GetComponent<ItemCollector>();
-                    itemCollector.onIncrementScore(10);
-                    itemCollector.UpdateScoreText();
-                    Destroy(gameObject);
-
-                }
-                else
-                {
-                    var player = GameObject.FindGameObjectsWithTag("Player");
-                    ItemCollector itemCollector = player[0].gameObject.GetComponent<ItemCollector>();
-                    itemCollector.onIncrementScore(10);
-                    itemCollector.UpdateScoreText();
-                    Destroy(gameObject);
-
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-       
     }
 
     void Update()
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < followRange)
-        {
-            distance = Vector2.Distance(transform.position, player.transform.position);
-            Vector2 direction = player.transform.position - transform.position;
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+        FacePlayer();
+    }
 
-        }
+    private void FacePlayer()
+    {
+        // Enemy chỉ đổi hướng để nhìn về phía Player
+        Vector2 direction = player.transform.position - transform.position;
 
-        /*if (player.transform.position.x > 0f)
+        // Sử dụng Raycast để kiểm tra có vật cản không
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, followRange);
+
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
-            sprite.flipX = true;
+            // Cập nhật hướng nhìn của Enemy
+            sprite.flipX = direction.x < 0;
         }
-        else if (player.transform.position.x < 0f)
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HandleCollision(collision.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleCollision(collision.gameObject);
+    }
+
+    private void HandleCollision(GameObject other)
+    {
+        if (other.CompareTag("Hurt"))
         {
-            sprite.flipX = false;
-        }*/
+            HandleDamage();
+        }
+        else if (other.CompareTag("TrampolineTop"))
+        {
+            // Bật Enemy lên khi chạm vào Trampoline
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, thrownSpace);
+        }
+        else if (other.CompareTag("EnemyDie"))
+        {
+            // Xóa Enemy nếu chạm vào vùng EnemyDie
+            Destroy(gameObject);
+        }
+    }
+
+    private void HandleDamage()
+    {
+        hitSound.Play();
+        stack++;
+
+        if (stack >= diePoint)
+        {
+            HandleDeath();
+        }
+    }
+
+    private void HandleDeath()
+    {
+        // Xóa Enemy khi chết
+        Destroy(gameObject);
     }
 }

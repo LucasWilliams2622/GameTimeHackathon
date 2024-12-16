@@ -34,11 +34,4 @@ public class EnemyBulletScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Stuff"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

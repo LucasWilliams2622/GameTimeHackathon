@@ -45,7 +45,6 @@ public class PlaneMove : MonoBehaviour
         }
 
         transform.position = thePosX;
-        Debug.Log("is right " + isRight + "vi tri" + transform.position.x);
 
 
     }

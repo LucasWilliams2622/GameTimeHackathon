@@ -14,11 +14,6 @@ public class PickUpWeapon : MonoBehaviour
         shootingScript = GetComponent<PlayerShooting>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,24 +25,8 @@ public class PickUpWeapon : MonoBehaviour
             shootingScript.enabled = true;
             shootingScript.MountOfBullet = shootingScript.MountOfBullet + 20;
             shootingScript.BulletLeftText.text = "" + shootingScript.MountOfBullet;
-
         }
 
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Letter")
-        {
-            shootingScript.enabled = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Letter")
-        {
-            shootingScript.enabled = true;
-        }
     }
 }
