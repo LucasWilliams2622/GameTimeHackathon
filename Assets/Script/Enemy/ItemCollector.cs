@@ -14,6 +14,7 @@ public class ItemCollector : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public int currentPoint;
     public static int numHackathon;
+    [SerializeField] int numHackathonValue;
     public TextMeshProUGUI hackathonText;
 
     PlayerHealth playerHealth = new PlayerHealth();
@@ -23,8 +24,7 @@ public class ItemCollector : MonoBehaviour
         ScorePlus = 1;
         BigScore = 20;
         scores = 0;
-        numHackathon = 0;
-        hackathonText.text = "";
+        hackathonText.text = numHackathonValue.ToString();
         scoreText.text = "";
         UpdateScoreText();
     }
@@ -48,7 +48,7 @@ public class ItemCollector : MonoBehaviour
         {
             Destroy(collision.gameObject);
             collectItemSound.Play();
-            onCollectHackathon(ScorePlus);
+            UpdateHackathonText();
         }
         /*   if (collision.gameObject.CompareTag("Heal"))
            {
@@ -78,8 +78,8 @@ public class ItemCollector : MonoBehaviour
     public void UpdateHackathonText()
     {
         Debug.Log(numHackathon);
-        int point = numHackathon + (int)currentPoint;
-            hackathonText.text = "" + point;
+        int point = numHackathonValue + 1;
+        hackathonText.text = point.ToString();
 
     }
     public void UpdateScoreText()

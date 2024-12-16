@@ -1,5 +1,6 @@
 using UnityEngine;
-using System; // Để sử dụng Action
+using System;
+using UnityEngine.SceneManagement; // Để sử dụng Action
 
 public class GameManager : MonoBehaviour
 {
@@ -30,5 +31,10 @@ public class GameManager : MonoBehaviour
     public bool IsPaused()
     {
         return isPaused;
+    }
+
+    public void ReturnMenu()
+    {
+        SceneManager.LoadScene("Start_Scene");
     }
 }

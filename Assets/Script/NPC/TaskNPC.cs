@@ -6,6 +6,7 @@ public class TaskNPC : MonoBehaviour
 {
     public DIalogBox trigger;
     public GameObject dialogueBox;
+
     private bool hasTriggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)

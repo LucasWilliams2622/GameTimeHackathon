@@ -7,6 +7,8 @@ public class DIalogBox : MonoBehaviour
     public Message[] messages;
     public Actor[] actors;
     public SFX[] sfxs;
+
+    [SerializeField] GameManager gameManager;
     public void StartDialogue()
     {
         FindObjectOfType<DialogManager>().OpenDialogue(messages, actors, sfxs);

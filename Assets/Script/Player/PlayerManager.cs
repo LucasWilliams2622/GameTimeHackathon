@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] private PlayerMovement playerMovement;
     public GameObject panel;
     public static bool isGameOver;
     void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>();
         isGameOver = false;
     }
 
@@ -20,12 +22,14 @@ public class PlayerManager : MonoBehaviour
     public void GameMenu()
     {
         Time.timeScale = 0;
+        playerMovement.DisableMovement();
         Debug.Log("Menu Open");
         panel.SetActive(true);
     }
     public void ResumeGame()    
     {
         Time.timeScale = 1f;
+        playerMovement.EnableMovement();
         panel.SetActive(false);
     }
     public void RePlay()

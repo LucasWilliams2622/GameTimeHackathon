@@ -14856,6 +14856,7 @@ GameObject:
   - component: {fileID: 249283738677534679}
   - component: {fileID: 249283738677534676}
   - component: {fileID: 7857798456612463334}
+  - component: {fileID: 3204764352680966162}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -14994,6 +14995,7 @@ MonoBehaviour:
   BigScore: 0
   scoreText: {fileID: 0}
   currentPoint: 0
+  numHackathonValue: 0
   hackathonText: {fileID: 0}
   collectItemSound: {fileID: 249283738677534673}
 --- !u!82 &249283738677534672
@@ -15387,22 +15389,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249283738677534683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c9eb43cbe71a744593635bcb1a021d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Gun: {fileID: 249283738083368535}
-  Bullet: {fileID: 7020584688157068953, guid: d1d6edf902d5ea84ea2ff3856ff4bd58, type: 3}
+  Bullet: {fileID: 3419606200890656122, guid: 0b3b823b8bda12a41b9d2f87fa16b420, type: 3}
   MountOfBullet: 0
   BulletSpeed: 9999
   ShootPoint: {fileID: 249283738375352952}
   BulletLeftText: {fileID: 0}
   showShootPoint: {fileID: 0}
   fireRate: 0
-  sniperSound: {fileID: 249283738677534679}
+  sniperSound: {fileID: 0}
   chargingSound: {fileID: 0}
   outOfBulletSound: {fileID: 0}
+  gunSprite: {fileID: 249283738258374295}
 --- !u!70 &7857798456612463334
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -15419,6 +15422,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0023515336, y: -0.09083569}
   m_Size: {x: 0.86299247, y: 1.9577994}
   m_Direction: 0
+--- !u!95 &3204764352680966162
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249283738677534683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9203caeec6d8e204b985cf86a1ebfc57, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &884558234246091591
 GameObject:
   m_ObjectHideFlags: 0

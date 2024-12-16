@@ -20,6 +20,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private AudioSource sniperSound;
     [SerializeField] private AudioSource chargingSound;
     [SerializeField] private AudioSource outOfBulletSound;
+
+    [Header("Gun")]
+    [SerializeField] private SpriteRenderer gunSprite;
     private int times = 0;
     private bool isRight;
 
@@ -34,7 +37,22 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         direction = mousePos - (Vector2)Gun.position;
+        // flip gun sprite following the mouse
+
+        if (gunSprite != null)
+        {
+            if (direction.x > 0)
+            {
+                gunSprite.flipY = false;
+            }
+            else
+            {
+                gunSprite.flipY = true;
+            }
+        }
+ 
         FaceMouce();
         if (Input.GetMouseButtonDown(0))
         {
