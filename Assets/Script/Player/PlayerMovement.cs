@@ -144,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         playerShooting.enabled = false;
         SetPlayerMovementState(MovementState.idle);
+        anim.SetInteger("state", 0);
+        anim.Play("Player_Idle");
     }
 
     // Enable player movement (e.g., when exiting a dialog)

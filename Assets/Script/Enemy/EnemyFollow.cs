@@ -9,7 +9,7 @@ public class EnemyFollow : MonoBehaviour
     private SpriteRenderer sprite;
     public float followRange;
     private Animator anim;
-    private int stack;
+    [SerializeField] private int stack;
     public int diePoint;
     [SerializeField] private AudioSource hitSound;
 
